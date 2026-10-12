@@ -49,6 +49,7 @@ namespace GestorProductosAT
                 primero ??= btn;
                 y += 50;
             }
+            // Botón de cerrar sesión y salir
             var btnCerrarSesion = CrearBotonMenu("Cerrar sesión");
             btnCerrarSesion.Dock = DockStyle.Bottom;
             btnCerrarSesion.Click += (s, ev) =>
