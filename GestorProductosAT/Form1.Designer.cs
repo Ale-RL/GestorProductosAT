@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             pnlMenu = new Panel();
             pnlSuperior = new Panel();
             lblBienvenida = new Label();
@@ -81,6 +82,7 @@
             Controls.Add(pnlContenido);
             Controls.Add(pnlSuperior);
             Controls.Add(pnlMenu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Gestor de Productos AT";
             WindowState = FormWindowState.Maximized;

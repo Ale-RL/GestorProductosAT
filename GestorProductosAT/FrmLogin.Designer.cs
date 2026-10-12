@@ -122,7 +122,7 @@
             AcceptButton = btnEntrar;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
+            BackColor = Color.Khaki;
             ClientSize = new Size(540, 488);
             Controls.Add(btnSalirse);
             Controls.Add(btnEntrar);

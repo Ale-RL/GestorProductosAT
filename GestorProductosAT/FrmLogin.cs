@@ -44,7 +44,7 @@ namespace GestorProductosAT
 
                 if (tabla.Rows.Count == 0)
                 {
-                    MessageBox.Show("Usuario o contraseña Incorrectos.");
+                  MessageBox.Show("Usuario o contraseña Incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
