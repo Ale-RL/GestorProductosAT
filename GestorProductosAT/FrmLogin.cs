@@ -54,7 +54,7 @@ namespace GestorProductosAT
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo conectar a la base de datos:\n" + ex.Message);
+                MessageBox.Show("No se pudo conectar a la base de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
