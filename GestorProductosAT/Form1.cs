@@ -102,6 +102,7 @@ namespace GestorProductosAT
             Control pantalla = titulo switch
             {
                 "Productos" => new UcProductos(),
+                "Categorías" => new UcCategorias(),
                 _ => new Label
                 {
                     Text = titulo + "\n(en construcción",
