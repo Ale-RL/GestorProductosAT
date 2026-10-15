@@ -85,7 +85,7 @@ namespace GestorProductosAT
             {
                 if (esNuevo)
                 {
-                    // El id se genera solo: no hay que escribirlo
+                    // El id se genera solo asi no hay que escribirlo
                     BaseDatos.Ejecutar(
                         "INSERT INTO Categoria (nombre, descripcion) VALUES (@n, @d)",
                         ("@n", nombre), ("@d", descripcion));

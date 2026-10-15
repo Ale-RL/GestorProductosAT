@@ -103,6 +103,7 @@ namespace GestorProductosAT
             {
                 "Productos" => new UcProductos(),
                 "Categorías" => new UcCategorias(),
+                "Proveedores" => new UcProveedores(),
                 _ => new Label
                 {
                     Text = titulo + "\n(en construcción",
