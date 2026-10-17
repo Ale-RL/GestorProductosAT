@@ -114,6 +114,7 @@ namespace GestorProductosAT
                 "Productos" => new UcProductos(),
                 "Categorías" => new UcCategorias(),
                 "Proveedores" => new UcProveedores(),
+                "Punto de Venta" => new UcPuntoVenta(),
                 _ => new Label
                 {
                     // Mostramos lo que no hemos hecho xd buena esa gang
