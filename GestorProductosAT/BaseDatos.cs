@@ -51,6 +51,18 @@ namespace GestorProductosAT
             return comando.ExecuteNonQuery();
         }
 
+        // Agrega la columna codigo_barras a Movimiento si la base de datos es la version vieja.
+        // Se puede ejecutar todas las veces que quieras, si la columna ya existe, no hace nada.
+        public static void Actualizar()
+        {
+            var columnas = Consultar("PRAGMA table_info(Movimiento)");
+            bool existe = columnas.Rows.Cast<DataRow>()
+                .Any(r => r["name"].ToString() == "codigo_barras");
+
+            if (!existe)
+                Ejecutar("ALTER TABLE Movimiento ADD COLUMN codigo_barras TEXT REFERENCES Producto(codigo_barras)");
+        }
+
         // Ejecuta varias instrucciones como una sola unidad,
         // si una falla, se deshace todo lo anterior.
         // este es un "por si acaso"

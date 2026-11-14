@@ -9,6 +9,14 @@ namespace GestorProductosAT
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+
+            try { BaseDatos.Actualizar(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo actualizar la base de datos:\n" + ex.Message);
+                return;
+            }
+
             while (true) 
             {
 
@@ -23,8 +31,6 @@ namespace GestorProductosAT
                 //Si no se pidio cerrar sesion, se cerró el programa
                 if (!principal.CerrarSesionSolicitado) return;
             }
-
-            Application.Run(new Form1());
         }
     }
 }

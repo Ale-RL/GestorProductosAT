@@ -118,7 +118,7 @@ namespace GestorProductosAT
                 _ => new Label
                 {
                     // Mostramos lo que no hemos hecho xd buena esa gang
-                    Text = titulo + "\n(en construcción",
+                    Text = titulo + "\n(en construcción)",
                     TextAlign = ContentAlignment.MiddleCenter,
                     Font = new Font ("Segoe UI", 20)
                 }

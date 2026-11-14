@@ -209,9 +209,9 @@ namespace GestorProductosAT
                         int stockActual = Convert.ToInt32(tx.Valor(
                             "SELECT stock FROM Producto WHERE codigo_barras = @c", ("@c", codigo)));
                         tx.Ejecutar(
-                            @"INSERT INTO Movimiento (id_venta, id_proveedor, tipo_movimiento, cantidad, fecha, inventario)
-                              VALUES (@v, NULL, 'SALIDA', @q, @f, @i)",
-                            ("@v", idVenta), ("@q", cantidad), ("@f", ahora), ("@i", stockActual));
+                            @"INSERT INTO Movimiento (id_venta, id_proveedor, codigo_barras, tipo_movimiento, cantidad, fecha, inventario)
+                              VALUES (@v, NULL, @c, 'SALIDA', @q, @f, @i)",
+                            ("@v", idVenta), ("@c", codigo), ("@q", cantidad), ("@f", ahora), ("@i", stockActual));
 
                         // 5. Disfrutar, no lo descargo por que ya lo tengo :D
                     }
