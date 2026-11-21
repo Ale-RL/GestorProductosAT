@@ -34,15 +34,18 @@
             cmbfiltro = new ComboBox();
             dgvmovimientos = new DataGridView();
             pnlformulario = new Panel();
-            lbltitulo = new Label();
-            lblTipo = new Label();
-            cmbTipo = new ComboBox();
-            lblProducto = new Label();
-            comboBox1 = new ComboBox();
-            lblCantidad = new Label();
-            cmbProveedor = new ComboBox();
-            nudCantidad = new NumericUpDown();
+            lblStockActual = new Label();
             label2 = new Label();
+            nudCantidad = new NumericUpDown();
+            cmbProveedor = new ComboBox();
+            lblCantidad = new Label();
+            comboBox1 = new ComboBox();
+            lblProducto = new Label();
+            cmbTipo = new ComboBox();
+            lblTipo = new Label();
+            lbltitulo = new Label();
+            btnGuardar = new Button();
+            btnLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvmovimientos).BeginInit();
             pnlformulario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
@@ -97,6 +100,9 @@
             // pnlformulario
             // 
             pnlformulario.BackColor = Color.White;
+            pnlformulario.Controls.Add(btnLimpiar);
+            pnlformulario.Controls.Add(btnGuardar);
+            pnlformulario.Controls.Add(lblStockActual);
             pnlformulario.Controls.Add(label2);
             pnlformulario.Controls.Add(nudCantidad);
             pnlformulario.Controls.Add(cmbProveedor);
@@ -112,34 +118,60 @@
             pnlformulario.Size = new Size(326, 650);
             pnlformulario.TabIndex = 5;
             // 
-            // lbltitulo
+            // lblStockActual
             // 
-            lbltitulo.AutoSize = true;
-            lbltitulo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbltitulo.Location = new Point(56, 18);
-            lbltitulo.Name = "lbltitulo";
-            lbltitulo.Size = new Size(216, 25);
-            lbltitulo.TabIndex = 0;
-            lbltitulo.Text = "Registro de movimiento";
+            lblStockActual.AutoSize = true;
+            lblStockActual.Location = new Point(24, 405);
+            lblStockActual.Name = "lblStockActual";
+            lblStockActual.Size = new Size(104, 20);
+            lblStockActual.TabIndex = 9;
+            lblStockActual.Text = "Stock Actual: -";
             // 
-            // lblTipo
+            // label2
             // 
-            lblTipo.AutoSize = true;
-            lblTipo.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTipo.Location = new Point(22, 65);
-            lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(147, 20);
-            lblTipo.TabIndex = 1;
-            lblTipo.Text = "Tipo de movimiento:";
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 318);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Provedor:";
             // 
-            // cmbTipo
+            // nudCantidad
             // 
-            cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTipo.FormattingEnabled = true;
-            cmbTipo.Location = new Point(24, 101);
-            cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(280, 28);
-            cmbTipo.TabIndex = 2;
+            nudCantidad.Location = new Point(24, 268);
+            nudCantidad.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(280, 27);
+            nudCantidad.TabIndex = 2;
+            nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // cmbProveedor
+            // 
+            cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbProveedor.FormattingEnabled = true;
+            cmbProveedor.Location = new Point(22, 353);
+            cmbProveedor.Name = "cmbProveedor";
+            cmbProveedor.Size = new Size(280, 28);
+            cmbProveedor.TabIndex = 3;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.AutoSize = true;
+            lblCantidad.Location = new Point(24, 234);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(72, 20);
+            lblCantidad.TabIndex = 5;
+            lblCantidad.Text = "Cantidad:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(24, 184);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(280, 28);
+            comboBox1.TabIndex = 1;
             // 
             // lblProducto
             // 
@@ -151,51 +183,58 @@
             lblProducto.Text = "Producto:";
             lblProducto.Click += lblProducto_Click;
             // 
-            // comboBox1
+            // cmbTipo
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(24, 184);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(280, 28);
-            comboBox1.TabIndex = 4;
+            cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipo.FormattingEnabled = true;
+            cmbTipo.Location = new Point(24, 101);
+            cmbTipo.Name = "cmbTipo";
+            cmbTipo.Size = new Size(280, 28);
+            cmbTipo.TabIndex = 0;
             // 
-            // lblCantidad
+            // lblTipo
             // 
-            lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(24, 234);
-            lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(72, 20);
-            lblCantidad.TabIndex = 5;
-            lblCantidad.Text = "Cantidad:";
+            lblTipo.AutoSize = true;
+            lblTipo.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTipo.Location = new Point(22, 65);
+            lblTipo.Name = "lblTipo";
+            lblTipo.Size = new Size(147, 20);
+            lblTipo.TabIndex = 1;
+            lblTipo.Text = "Tipo de movimiento:";
             // 
-            // cmbProveedor
+            // lbltitulo
             // 
-            cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbProveedor.FormattingEnabled = true;
-            cmbProveedor.Location = new Point(22, 353);
-            cmbProveedor.Name = "cmbProveedor";
-            cmbProveedor.Size = new Size(280, 28);
-            cmbProveedor.TabIndex = 6;
+            lbltitulo.AutoSize = true;
+            lbltitulo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbltitulo.Location = new Point(56, 18);
+            lbltitulo.Name = "lbltitulo";
+            lbltitulo.Size = new Size(216, 25);
+            lbltitulo.TabIndex = 0;
+            lbltitulo.Text = "Registro de movimiento";
             // 
-            // nudCantidad
+            // btnGuardar
             // 
-            nudCantidad.Location = new Point(24, 268);
-            nudCantidad.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(280, 27);
-            nudCantidad.TabIndex = 7;
-            nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            btnGuardar.BackColor = Color.ForestGreen;
+            btnGuardar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardar.ForeColor = Color.Transparent;
+            btnGuardar.Location = new Point(34, 448);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(108, 39);
+            btnGuardar.TabIndex = 4;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // btnLimpiar
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(24, 318);
-            label2.Name = "label2";
-            label2.Size = new Size(72, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Provedor:";
+            btnLimpiar.BackColor = SystemColors.HotTrack;
+            btnLimpiar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiar.ForeColor = Color.Transparent;
+            btnLimpiar.Location = new Point(184, 448);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(108, 39);
+            btnLimpiar.TabIndex = 5;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = false;
             // 
             // UcEntradasSalidas
             // 
@@ -235,5 +274,8 @@
         private Label lblCantidad;
         private NumericUpDown nudCantidad;
         private Label label2;
+        private Label lblStockActual;
+        private Button btnGuardar;
+        private Button btnLimpiar;
     }
 }
