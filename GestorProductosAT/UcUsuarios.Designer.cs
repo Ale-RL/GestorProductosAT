@@ -44,6 +44,7 @@
             label3 = new Label();
             txtNombre = new TextBox();
             label2 = new Label();
+            lblAyuda = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -78,6 +79,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblAyuda);
             panel1.Controls.Add(btnEliminar);
             panel1.Controls.Add(btnGuardar);
             panel1.Controls.Add(btnNuevo);
@@ -213,6 +215,17 @@
             label2.TabIndex = 0;
             label2.Text = "Nombre:";
             // 
+            // lblAyuda
+            // 
+            lblAyuda.AutoSize = true;
+            lblAyuda.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAyuda.ForeColor = Color.DimGray;
+            lblAyuda.Location = new Point(15, 287);
+            lblAyuda.Name = "lblAyuda";
+            lblAyuda.Size = new Size(243, 17);
+            lblAyuda.TabIndex = 8;
+            lblAyuda.Text = "Al editar, déjala vacía para no cambiarla";
+            // 
             // UcUsuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -249,5 +262,6 @@
         private Button btnEliminar;
         private Button btnGuardar;
         private Button btnNuevo;
+        private Label lblAyuda;
     }
 }
