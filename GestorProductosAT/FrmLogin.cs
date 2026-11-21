@@ -38,16 +38,18 @@ namespace GestorProductosAT
             try
             {
                 var tabla = BaseDatos.Consultar(
-                    "SELECT nombre, rol FROM Usuario WHERE usuario = @u AND contrasena = @c",
-                    ("@u", txtUsuario.Text.Trim()),
-                    ("@c", txtContrasena.Text));
+                    "SELECT id_usuario, nombre, rol, contrasena FROM Usuario WHERE usuario = @u",
+                    ("@u", txtUsuario.Text.Trim()));
 
-                if (tabla.Rows.Count == 0)
+                // Se busca solo por usuario; la contraseña se compara aparte porque está protegida
+                if (tabla.Rows.Count == 0 ||
+                    !Seguridad.Verificar(txtContrasena.Text, tabla.Rows[0]["contrasena"].ToString()!))
                 {
-                  MessageBox.Show("Usuario o contraseña Incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Usuario o contraseña Incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
+                Sesion.Id = Convert.ToInt64(tabla.Rows[0]["id_usuario"]);
                 Sesion.Nombre = tabla.Rows[0]["nombre"].ToString();
                 Sesion.Rol = tabla.Rows[0]["rol"].ToString();
                 DialogResult = DialogResult.OK;

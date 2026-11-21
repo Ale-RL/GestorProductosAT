@@ -4,6 +4,7 @@
     {
         public static string Nombre { get; set; } = "";
         public static string Rol { get; set; } = "";
+        public static long Id { get; set; }
 
     }
 }

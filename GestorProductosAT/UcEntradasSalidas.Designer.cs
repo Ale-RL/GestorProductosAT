@@ -30,24 +30,24 @@
         {
             label1 = new Label();
             lblfiltro = new Label();
-            txtbuscar = new TextBox();
-            cmbfiltro = new ComboBox();
-            dgvmovimientos = new DataGridView();
-            pnlformulario = new Panel();
+            txtBuscar = new TextBox();
+            cmbFiltro = new ComboBox();
+            dgvMovimientos = new DataGridView();
+            pnlFormulario = new Panel();
+            btnLimpiar = new Button();
+            btnGuardar = new Button();
             lblStockActual = new Label();
-            label2 = new Label();
+            lblProveedor = new Label();
             nudCantidad = new NumericUpDown();
             cmbProveedor = new ComboBox();
             lblCantidad = new Label();
-            comboBox1 = new ComboBox();
+            cmbProducto = new ComboBox();
             lblProducto = new Label();
             cmbTipo = new ComboBox();
             lblTipo = new Label();
-            lbltitulo = new Label();
-            btnGuardar = new Button();
-            btnLimpiar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvmovimientos).BeginInit();
-            pnlformulario.SuspendLayout();
+            lblTitulo = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvMovimientos).BeginInit();
+            pnlFormulario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             SuspendLayout();
             // 
@@ -71,52 +71,76 @@
             lblfiltro.TabIndex = 1;
             lblfiltro.Text = "Mostrar:";
             // 
-            // txtbuscar
+            // txtBuscar
             // 
-            txtbuscar.Location = new Point(85, 15);
-            txtbuscar.Name = "txtbuscar";
-            txtbuscar.Size = new Size(250, 27);
-            txtbuscar.TabIndex = 2;
+            txtBuscar.Location = new Point(85, 15);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(250, 27);
+            txtBuscar.TabIndex = 2;
             // 
-            // cmbfiltro
+            // cmbFiltro
             // 
-            cmbfiltro.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbfiltro.FormattingEnabled = true;
-            cmbfiltro.Location = new Point(426, 15);
-            cmbfiltro.Name = "cmbfiltro";
-            cmbfiltro.Size = new Size(130, 28);
-            cmbfiltro.TabIndex = 3;
+            cmbFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFiltro.FormattingEnabled = true;
+            cmbFiltro.Location = new Point(426, 15);
+            cmbFiltro.Name = "cmbFiltro";
+            cmbFiltro.Size = new Size(130, 28);
+            cmbFiltro.TabIndex = 3;
             // 
-            // dgvmovimientos
+            // dgvMovimientos
             // 
-            dgvmovimientos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvmovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvmovimientos.Location = new Point(15, 65);
-            dgvmovimientos.Name = "dgvmovimientos";
-            dgvmovimientos.RowHeadersWidth = 51;
-            dgvmovimientos.Size = new Size(640, 550);
-            dgvmovimientos.TabIndex = 4;
+            dgvMovimientos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMovimientos.Location = new Point(15, 65);
+            dgvMovimientos.Name = "dgvMovimientos";
+            dgvMovimientos.RowHeadersWidth = 51;
+            dgvMovimientos.Size = new Size(640, 550);
+            dgvMovimientos.TabIndex = 4;
             // 
-            // pnlformulario
+            // pnlFormulario
             // 
-            pnlformulario.BackColor = Color.White;
-            pnlformulario.Controls.Add(btnLimpiar);
-            pnlformulario.Controls.Add(btnGuardar);
-            pnlformulario.Controls.Add(lblStockActual);
-            pnlformulario.Controls.Add(label2);
-            pnlformulario.Controls.Add(nudCantidad);
-            pnlformulario.Controls.Add(cmbProveedor);
-            pnlformulario.Controls.Add(lblCantidad);
-            pnlformulario.Controls.Add(comboBox1);
-            pnlformulario.Controls.Add(lblProducto);
-            pnlformulario.Controls.Add(cmbTipo);
-            pnlformulario.Controls.Add(lblTipo);
-            pnlformulario.Controls.Add(lbltitulo);
-            pnlformulario.Dock = DockStyle.Right;
-            pnlformulario.Location = new Point(674, 0);
-            pnlformulario.Name = "pnlformulario";
-            pnlformulario.Size = new Size(326, 650);
-            pnlformulario.TabIndex = 5;
+            pnlFormulario.BackColor = Color.White;
+            pnlFormulario.Controls.Add(btnLimpiar);
+            pnlFormulario.Controls.Add(btnGuardar);
+            pnlFormulario.Controls.Add(lblStockActual);
+            pnlFormulario.Controls.Add(lblProveedor);
+            pnlFormulario.Controls.Add(nudCantidad);
+            pnlFormulario.Controls.Add(cmbProveedor);
+            pnlFormulario.Controls.Add(lblCantidad);
+            pnlFormulario.Controls.Add(cmbProducto);
+            pnlFormulario.Controls.Add(lblProducto);
+            pnlFormulario.Controls.Add(cmbTipo);
+            pnlFormulario.Controls.Add(lblTipo);
+            pnlFormulario.Controls.Add(lblTitulo);
+            pnlFormulario.Dock = DockStyle.Right;
+            pnlFormulario.Location = new Point(674, 0);
+            pnlFormulario.Name = "pnlFormulario";
+            pnlFormulario.Size = new Size(326, 650);
+            pnlFormulario.TabIndex = 5;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.BackColor = SystemColors.HotTrack;
+            btnLimpiar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiar.ForeColor = Color.Transparent;
+            btnLimpiar.Location = new Point(184, 448);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(108, 39);
+            btnLimpiar.TabIndex = 5;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = false;
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.BackColor = Color.ForestGreen;
+            btnGuardar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardar.ForeColor = Color.Transparent;
+            btnGuardar.Location = new Point(34, 448);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(108, 39);
+            btnGuardar.TabIndex = 4;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
             // 
             // lblStockActual
             // 
@@ -127,14 +151,14 @@
             lblStockActual.TabIndex = 9;
             lblStockActual.Text = "Stock Actual: -";
             // 
-            // label2
+            // lblProveedor
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(24, 318);
-            label2.Name = "label2";
-            label2.Size = new Size(72, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Provedor:";
+            lblProveedor.AutoSize = true;
+            lblProveedor.Location = new Point(24, 318);
+            lblProveedor.Name = "lblProveedor";
+            lblProveedor.Size = new Size(80, 20);
+            lblProveedor.TabIndex = 8;
+            lblProveedor.Text = "Proveedor:";
             // 
             // nudCantidad
             // 
@@ -164,14 +188,14 @@
             lblCantidad.TabIndex = 5;
             lblCantidad.Text = "Cantidad:";
             // 
-            // comboBox1
+            // cmbProducto
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(24, 184);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(280, 28);
-            comboBox1.TabIndex = 1;
+            cmbProducto.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbProducto.FormattingEnabled = true;
+            cmbProducto.Location = new Point(24, 184);
+            cmbProducto.Name = "cmbProducto";
+            cmbProducto.Size = new Size(280, 28);
+            cmbProducto.TabIndex = 1;
             // 
             // lblProducto
             // 
@@ -181,7 +205,6 @@
             lblProducto.Size = new Size(72, 20);
             lblProducto.TabIndex = 3;
             lblProducto.Text = "Producto:";
-            lblProducto.Click += lblProducto_Click;
             // 
             // cmbTipo
             // 
@@ -202,56 +225,32 @@
             lblTipo.TabIndex = 1;
             lblTipo.Text = "Tipo de movimiento:";
             // 
-            // lbltitulo
+            // lblTitulo
             // 
-            lbltitulo.AutoSize = true;
-            lbltitulo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbltitulo.Location = new Point(56, 18);
-            lbltitulo.Name = "lbltitulo";
-            lbltitulo.Size = new Size(216, 25);
-            lbltitulo.TabIndex = 0;
-            lbltitulo.Text = "Registro de movimiento";
-            // 
-            // btnGuardar
-            // 
-            btnGuardar.BackColor = Color.ForestGreen;
-            btnGuardar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGuardar.ForeColor = Color.Transparent;
-            btnGuardar.Location = new Point(34, 448);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(108, 39);
-            btnGuardar.TabIndex = 4;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.UseVisualStyleBackColor = false;
-            // 
-            // btnLimpiar
-            // 
-            btnLimpiar.BackColor = SystemColors.HotTrack;
-            btnLimpiar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpiar.ForeColor = Color.Transparent;
-            btnLimpiar.Location = new Point(184, 448);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(108, 39);
-            btnLimpiar.TabIndex = 5;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = false;
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.Location = new Point(56, 18);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(216, 25);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Registro de movimiento";
             // 
             // UcEntradasSalidas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 253, 225);
-            Controls.Add(pnlformulario);
-            Controls.Add(dgvmovimientos);
-            Controls.Add(cmbfiltro);
-            Controls.Add(txtbuscar);
+            Controls.Add(pnlFormulario);
+            Controls.Add(dgvMovimientos);
+            Controls.Add(cmbFiltro);
+            Controls.Add(txtBuscar);
             Controls.Add(lblfiltro);
             Controls.Add(label1);
             Name = "UcEntradasSalidas";
             Size = new Size(1000, 650);
-            ((System.ComponentModel.ISupportInitialize)dgvmovimientos).EndInit();
-            pnlformulario.ResumeLayout(false);
-            pnlformulario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMovimientos).EndInit();
+            pnlFormulario.ResumeLayout(false);
+            pnlFormulario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -261,19 +260,19 @@
 
         private Label label1;
         private Label lblfiltro;
-        private TextBox txtbuscar;
-        private ComboBox cmbfiltro;
-        private DataGridView dgvmovimientos;
-        private Panel pnlformulario;
+        private TextBox txtBuscar;
+        private ComboBox cmbFiltro;
+        private DataGridView dgvMovimientos;
+        private Panel pnlFormulario;
         private Label lblTipo;
-        private Label lbltitulo;
+        private Label lblTitulo;
         private Label lblProducto;
         private ComboBox cmbTipo;
-        private ComboBox comboBox1;
+        private ComboBox cmbProducto;
         private ComboBox cmbProveedor;
         private Label lblCantidad;
         private NumericUpDown nudCantidad;
-        private Label label2;
+        private Label lblProveedor;
         private Label lblStockActual;
         private Button btnGuardar;
         private Button btnLimpiar;

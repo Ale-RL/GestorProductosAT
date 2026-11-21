@@ -32,6 +32,13 @@ namespace GestorProductosAT
             dgvProveedores.RowHeadersVisible = false;
             dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+
+            //Esto es una prueba para ver si funcionan los estilos 
+            Estilo.Tabla(dgvProveedores);
+            Estilo.Boton(btnGuardar, Estilo.VerdeClaro);
+            Estilo.Boton(btnEliminar, Color.Firebrick);
+            Estilo.Boton(btnNuevo, Color.SteelBlue);
+
             CargarProveedores();
             LimpiarFormulario();
         }

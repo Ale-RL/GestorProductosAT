@@ -51,8 +51,9 @@ namespace GestorProductosAT
             return comando.ExecuteNonQuery();
         }
 
-        // Agrega la columna codigo_barras a Movimiento si la base de datos es la version vieja.
-        // Se puede ejecutar todas las veces que quieras, si la columna ya existe, no hace nada.
+        // Agrega la columna codigo_barras a Movimiento si la base de datos es vieja
+        // y protege las contraseñas que todavía están en texto plano.
+        // Se puede ejecutar todas las veces que quieras: si ya está hecho, no hace nada.
         public static void Actualizar()
         {
             var columnas = Consultar("PRAGMA table_info(Movimiento)");
@@ -61,6 +62,16 @@ namespace GestorProductosAT
 
             if (!existe)
                 Ejecutar("ALTER TABLE Movimiento ADD COLUMN codigo_barras TEXT REFERENCES Producto(codigo_barras)");
+
+            // Protege las contraseñas que todavía están en texto plano
+            var usuarios = Consultar("SELECT id_usuario, contrasena FROM Usuario");
+            foreach (DataRow u in usuarios.Rows)
+            {
+                string actual = u["contrasena"].ToString()!;
+                if (!Seguridad.EsHash(actual))
+                    Ejecutar("UPDATE Usuario SET contrasena = @h WHERE id_usuario = @id",
+                        ("@h", Seguridad.Hashear(actual)), ("@id", u["id_usuario"]));
+            }
         }
 
         // Ejecuta varias instrucciones como una sola unidad,

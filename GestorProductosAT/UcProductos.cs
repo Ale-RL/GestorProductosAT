@@ -34,6 +34,13 @@ namespace GestorProductosAT
             dgvProductos.RowHeadersVisible = false;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+
+            //Esta parte es de prueba para ver si funcionan los estilos
+            Estilo.Tabla(dgvProductos);
+            Estilo.Boton(btnGuardar, Estilo.VerdeClaro);
+            Estilo.Boton(btnEliminar, Color.Firebrick);
+            Estilo.Boton(btnNuevo, Color.SteelBlue);
+
             cmbCategoria.DataSource = BaseDatos.Consultar("SELECT id_categoria, nombre FROM Categoria ORDER BY nombre");
             cmbCategoria.DisplayMember = "nombre";
             cmbCategoria.ValueMember = "id_categoria";

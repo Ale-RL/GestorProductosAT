@@ -32,18 +32,18 @@
             txtBuscar = new TextBox();
             dgvUsuarios = new DataGridView();
             panel1 = new Panel();
-            label2 = new Label();
-            txtNombre = new TextBox();
-            label3 = new Label();
-            txtUsuario = new TextBox();
-            label4 = new Label();
-            txtContrasena = new TextBox();
-            label5 = new Label();
-            label6 = new Label();
-            cmbRol = new ComboBox();
-            btnNuevo = new Button();
-            btnGuardar = new Button();
             btnEliminar = new Button();
+            btnGuardar = new Button();
+            btnNuevo = new Button();
+            cmbRol = new ComboBox();
+            label6 = new Label();
+            label5 = new Label();
+            txtContrasena = new TextBox();
+            label4 = new Label();
+            txtUsuario = new TextBox();
+            label3 = new Label();
+            txtNombre = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -90,62 +90,66 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(txtNombre);
             panel1.Controls.Add(label2);
+            panel1.Dock = DockStyle.Right;
             panel1.Location = new Point(674, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(326, 650);
             panel1.TabIndex = 3;
             // 
-            // label2
+            // btnEliminar
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(14, 65);
-            label2.Name = "label2";
-            label2.Size = new Size(71, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Nombre:";
+            btnEliminar.BackColor = Color.Red;
+            btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnEliminar.ForeColor = Color.Transparent;
+            btnEliminar.Location = new Point(30, 577);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(266, 35);
+            btnEliminar.TabIndex = 6;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
             // 
-            // txtNombre
+            // btnGuardar
             // 
-            txtNombre.Location = new Point(90, 62);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(216, 27);
-            txtNombre.TabIndex = 0;
+            btnGuardar.BackColor = Color.FromArgb(0, 192, 0);
+            btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnGuardar.ForeColor = Color.Transparent;
+            btnGuardar.Location = new Point(30, 505);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(266, 35);
+            btnGuardar.TabIndex = 5;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // btnNuevo
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(14, 140);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Usuario:";
+            btnNuevo.BackColor = Color.Blue;
+            btnNuevo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevo.ForeColor = Color.Transparent;
+            btnNuevo.Location = new Point(30, 427);
+            btnNuevo.Name = "btnNuevo";
+            btnNuevo.Size = new Size(266, 35);
+            btnNuevo.TabIndex = 4;
+            btnNuevo.Text = "Nuevo";
+            btnNuevo.UseVisualStyleBackColor = false;
             // 
-            // txtUsuario
+            // cmbRol
             // 
-            txtUsuario.Location = new Point(90, 137);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(216, 27);
-            txtUsuario.TabIndex = 1;
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRol.FormattingEnabled = true;
+            cmbRol.Location = new Point(90, 331);
+            cmbRol.Name = "cmbRol";
+            cmbRol.Size = new Size(184, 28);
+            cmbRol.TabIndex = 3;
             // 
-            // label4
+            // label6
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(14, 201);
-            label4.Name = "label4";
-            label4.Size = new Size(92, 20);
-            label4.TabIndex = 4;
-            label4.Text = "Contraseña:";
-            // 
-            // txtContrasena
-            // 
-            txtContrasena.Location = new Point(30, 247);
-            txtContrasena.Name = "txtContrasena";
-            txtContrasena.Size = new Size(276, 27);
-            txtContrasena.TabIndex = 2;
-            txtContrasena.UseSystemPasswordChar = true;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(46, 334);
+            label6.Name = "label6";
+            label6.Size = new Size(41, 23);
+            label6.TabIndex = 7;
+            label6.Text = "Rol:";
             // 
             // label5
             // 
@@ -157,57 +161,57 @@
             label5.Size = new Size(0, 17);
             label5.TabIndex = 6;
             // 
-            // label6
+            // txtContrasena
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(46, 334);
-            label6.Name = "label6";
-            label6.Size = new Size(35, 20);
-            label6.TabIndex = 7;
-            label6.Text = "Rol:";
+            txtContrasena.Location = new Point(30, 247);
+            txtContrasena.Name = "txtContrasena";
+            txtContrasena.Size = new Size(276, 27);
+            txtContrasena.TabIndex = 2;
+            txtContrasena.UseSystemPasswordChar = true;
             // 
-            // cmbRol
+            // label4
             // 
-            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRol.FormattingEnabled = true;
-            cmbRol.Location = new Point(90, 331);
-            cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(184, 28);
-            cmbRol.TabIndex = 3;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(14, 201);
+            label4.Name = "label4";
+            label4.Size = new Size(92, 20);
+            label4.TabIndex = 4;
+            label4.Text = "Contraseña:";
             // 
-            // btnNuevo
+            // txtUsuario
             // 
-            btnNuevo.BackColor = Color.Blue;
-            btnNuevo.ForeColor = Color.Transparent;
-            btnNuevo.Location = new Point(30, 427);
-            btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(266, 29);
-            btnNuevo.TabIndex = 4;
-            btnNuevo.Text = "Nuevo";
-            btnNuevo.UseVisualStyleBackColor = false;
+            txtUsuario.Location = new Point(90, 137);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(216, 27);
+            txtUsuario.TabIndex = 1;
             // 
-            // btnGuardar
+            // label3
             // 
-            btnGuardar.BackColor = Color.FromArgb(0, 192, 0);
-            btnGuardar.ForeColor = Color.Transparent;
-            btnGuardar.Location = new Point(30, 505);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(266, 29);
-            btnGuardar.TabIndex = 5;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.UseVisualStyleBackColor = false;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(14, 140);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Usuario:";
             // 
-            // btnEliminar
+            // txtNombre
             // 
-            btnEliminar.BackColor = Color.Red;
-            btnEliminar.ForeColor = Color.Transparent;
-            btnEliminar.Location = new Point(30, 577);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(266, 29);
-            btnEliminar.TabIndex = 6;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
+            txtNombre.Location = new Point(90, 62);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(216, 27);
+            txtNombre.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(14, 65);
+            label2.Name = "label2";
+            label2.Size = new Size(71, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Nombre:";
             // 
             // UcUsuarios
             // 
