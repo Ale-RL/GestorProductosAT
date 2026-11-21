@@ -24,6 +24,7 @@ namespace GestorProductosAT
         private void UcProductos_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             //dgv es Data Grid View que funciona para conectar la base de dato:
             //sirve para mostrar o editar datos (osea administra info)
@@ -33,13 +34,6 @@ namespace GestorProductosAT
             dgvProductos.MultiSelect = false;
             dgvProductos.RowHeadersVisible = false;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-
-            //Esta parte es de prueba para ver si funcionan los estilos
-            Estilo.Tabla(dgvProductos);
-            Estilo.Boton(btnGuardar, Estilo.VerdeClaro);
-            Estilo.Boton(btnEliminar, Color.Firebrick);
-            Estilo.Boton(btnNuevo, Color.SteelBlue);
 
             cmbCategoria.DataSource = BaseDatos.Consultar("SELECT id_categoria, nombre FROM Categoria ORDER BY nombre");
             cmbCategoria.DisplayMember = "nombre";

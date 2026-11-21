@@ -24,6 +24,7 @@ namespace GestorProductosAT
         private void UcUsuarios_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.AllowUserToAddRows = false;

@@ -22,6 +22,7 @@ namespace GestorProductosAT
         private void UcEntradasSalidas_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             dgvMovimientos.ReadOnly = true;
             dgvMovimientos.AllowUserToAddRows = false;

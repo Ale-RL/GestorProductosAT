@@ -26,6 +26,7 @@ namespace GestorProductosAT
         public FrmLogin()
         {
             InitializeComponent();
+            Estilo.Aplicar(this);
         }
 
         private void label1_Click(object sender, EventArgs e)

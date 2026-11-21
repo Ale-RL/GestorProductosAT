@@ -34,6 +34,7 @@ namespace GestorProductosAT
         private void UcPuntoVenta_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             carrito.Columns.Add("codigo", typeof(string));
             carrito.Columns.Add("nombre", typeof(string));

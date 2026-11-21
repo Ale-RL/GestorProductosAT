@@ -41,6 +41,7 @@ namespace GestorProductosAT
         private void Acomodar()
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             int margen = 15;
             int separacion = 15;

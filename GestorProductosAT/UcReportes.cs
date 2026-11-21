@@ -26,6 +26,7 @@ namespace GestorProductosAT
         private void UcReportes_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             dgvReporte.ReadOnly = true;
             dgvReporte.AllowUserToAddRows = false;

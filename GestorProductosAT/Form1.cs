@@ -80,8 +80,7 @@ namespace GestorProductosAT
         {
             var btn = new Button
             {
-                // Configura las propiedades visuales del botón.
-                Text = "  " + texto,
+                Text = "   " + texto,
                 Size = new Size(pnlMenu.Width, 50),
                 FlatStyle = FlatStyle.Flat,
                 BackColor = VerdeOscuro,
@@ -90,17 +89,34 @@ namespace GestorProductosAT
                 TextAlign = ContentAlignment.MiddleLeft,
                 Cursor = Cursors.Hand
             };
-            btn.FlatAppearance.BorderSize = 0; // Elimina el borde del botón.
-            return btn; // Devuelve el botón creado.
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 108, 82); // al pasar el ratón
+            btn.FlatAppearance.MouseDownBackColor = VerdeActivo;
+
+            // Barra amarilla a la izquierda en la opción seleccionada
+            btn.Paint += (s, e) =>
+            {
+                if (btn == botonActivo)
+                {
+                    using var pincel = new SolidBrush(Estilo.Amarillo);
+                    e.Graphics.FillRectangle(pincel, 0, 0, 5, btn.Height);
+                }
+            };
+            return btn;
         }
 
         // Cambia el color del botón seleccionado para identificarlo visualmente.
         private void Activar(Button btn)
         {
-            // Devuelve al color original el botón que estaba seleccionado.
-            if (botonActivo != null) botonActivo.BackColor = VerdeOscuro;
-            botonActivo = btn; //Guarda el boton que se acaba de seleccionar.
-            btn.BackColor = VerdeActivo; //Cambia el color del botón seleccionado.
+            var anterior = botonActivo;
+            if (anterior != null)
+            {
+                anterior.BackColor = VerdeOscuro;
+                anterior.Invalidate(); // para que se borre su barra amarilla
+            }
+            botonActivo = btn;
+            btn.BackColor = VerdeActivo;
+            btn.Invalidate();
         }
 
         // Muestra la pantalla correspondiente a la opción seleccionada.

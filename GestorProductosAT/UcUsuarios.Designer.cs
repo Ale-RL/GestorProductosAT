@@ -32,6 +32,7 @@
             txtBuscar = new TextBox();
             dgvUsuarios = new DataGridView();
             panel1 = new Panel();
+            lblAyuda = new Label();
             btnEliminar = new Button();
             btnGuardar = new Button();
             btnNuevo = new Button();
@@ -44,7 +45,6 @@
             label3 = new Label();
             txtNombre = new TextBox();
             label2 = new Label();
-            lblAyuda = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -98,14 +98,25 @@
             panel1.Size = new Size(326, 650);
             panel1.TabIndex = 3;
             // 
+            // lblAyuda
+            // 
+            lblAyuda.AutoSize = true;
+            lblAyuda.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAyuda.ForeColor = Color.DimGray;
+            lblAyuda.Location = new Point(15, 287);
+            lblAyuda.Name = "lblAyuda";
+            lblAyuda.Size = new Size(243, 17);
+            lblAyuda.TabIndex = 8;
+            lblAyuda.Text = "Al editar, déjala vacía para no cambiarla";
+            // 
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.Red;
             btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEliminar.ForeColor = Color.Transparent;
-            btnEliminar.Location = new Point(30, 577);
+            btnEliminar.Location = new Point(30, 564);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(266, 35);
+            btnEliminar.Size = new Size(266, 45);
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -115,9 +126,9 @@
             btnGuardar.BackColor = Color.FromArgb(0, 192, 0);
             btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.Transparent;
-            btnGuardar.Location = new Point(30, 505);
+            btnGuardar.Location = new Point(30, 486);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(266, 35);
+            btnGuardar.Size = new Size(266, 45);
             btnGuardar.TabIndex = 5;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -127,9 +138,9 @@
             btnNuevo.BackColor = Color.Blue;
             btnNuevo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNuevo.ForeColor = Color.Transparent;
-            btnNuevo.Location = new Point(30, 427);
+            btnNuevo.Location = new Point(30, 408);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(266, 35);
+            btnNuevo.Size = new Size(266, 45);
             btnNuevo.TabIndex = 4;
             btnNuevo.Text = "Nuevo";
             btnNuevo.UseVisualStyleBackColor = false;
@@ -214,17 +225,6 @@
             label2.Size = new Size(71, 20);
             label2.TabIndex = 0;
             label2.Text = "Nombre:";
-            // 
-            // lblAyuda
-            // 
-            lblAyuda.AutoSize = true;
-            lblAyuda.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAyuda.ForeColor = Color.DimGray;
-            lblAyuda.Location = new Point(15, 287);
-            lblAyuda.Name = "lblAyuda";
-            lblAyuda.Size = new Size(243, 17);
-            lblAyuda.TabIndex = 8;
-            lblAyuda.Text = "Al editar, déjala vacía para no cambiarla";
             // 
             // UcUsuarios
             // 

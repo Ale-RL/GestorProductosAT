@@ -24,6 +24,7 @@ namespace GestorProductosAT
         private void UcCategorias_Load(object? sender, EventArgs e)
         {
             if (DesignMode) return;
+            Estilo.Aplicar(this);
 
             dgvCategorias.ReadOnly = true;
             dgvCategorias.AllowUserToAddRows = false;
