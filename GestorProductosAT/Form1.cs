@@ -118,6 +118,7 @@ namespace GestorProductosAT
                 "Entradas y Salidas" => new UcEntradasSalidas(),
                 "Usuarios" => new UcUsuarios(),
                 "Inicio" => new UcInicio(),
+                "Reportes" => new UcReportes(),
 
                 _ => new Label
                 {

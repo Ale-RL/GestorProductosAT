@@ -82,6 +82,8 @@ namespace GestorProductosAT
                 ("@f", "%" + txtBuscar.Text.Trim() + "%"),
                 ("@t", tipo));
 
+            dgvMovimientos.DataSource = null;
+            dgvMovimientos.Columns.Clear(); // evita que se queden columnas de la consulta anterior
             dgvMovimientos.DataSource = tabla;
 
             dgvMovimientos.Columns["fecha"]!.HeaderText = "Fecha";
