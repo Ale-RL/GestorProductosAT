@@ -106,6 +106,9 @@ namespace GestorProductosAT
             // Bloquea el código porque funciona como identificador del producto.
             txtCodigo.ReadOnly = true;
 
+            // El stock solo cambia por ventas y por Entradas y Salidas
+            txtStock.ReadOnly = true; 
+
             // Coloca los datos del producto seleccionado en los campos correspondientes.
             txtCodigo.Text = fila.Cells["codigo_barras"].Value?.ToString();
             txtNombre.Text = fila.Cells["nombre"].Value?.ToString();
@@ -122,6 +125,9 @@ namespace GestorProductosAT
         {
             // Regresa el formulario al modo de registro de un producto nuevo.
             esNuevo = true;
+
+            // En un producto nuevo sí se escribe el stock inicial
+            txtStock.ReadOnly = false; 
 
             // Habilita nuevamente la edición del código y limpia los campos.
             txtCodigo.ReadOnly = false;
@@ -169,11 +175,12 @@ namespace GestorProductosAT
                 if (esNuevo)
                 {
                     BaseDatos.Ejecutar(
-                        @"INSERT INTO Producto (codigo_barras, nombre, precio_compra, precio_venta, stock, id_categoria, id_proveedor)
-                        VALUES (@c, @n, @pc, @pv, @s, @cat, @prov)",
-                        ("@c", codigo), ("@n", nombre), ("@pc", precioCompra), ("@pv", precioVenta),
-                        ("@s", stock), ("@cat", cmbCategoria.SelectedValue!), ("@prov", cmbProveedor.SelectedValue!)
-                            );
+                        @"UPDATE Producto
+                        SET nombre = @n, precio_compra = @pc, precio_venta = @pv,
+                            id_categoria = @cat, id_proveedor = @prov
+                      WHERE codigo_barras = @c",
+                    ("@c", codigo), ("@n", nombre), ("@pc", precioCompra), ("@pv", precioVenta),
+                    ("@cat", cmbCategoria.SelectedValue!), ("@prov", cmbProveedor.SelectedValue!));
                 }
                 // Si ya existe, actualiza sus datos mediante UPDATE.
                 else

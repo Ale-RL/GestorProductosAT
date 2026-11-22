@@ -61,7 +61,8 @@ namespace GestorProductosAT
             {
                 // Limpia los datos del usuario actual.
                 Sesion.Nombre = ""; 
-                Sesion.Rol = ""; 
+                Sesion.Rol = "";
+                Sesion.Id = 0; // sin sesión no hay id: que no se quede el fantasma del usuario anterior
 
                 CerrarSesionSolicitado = true; // Indica que se solicitó cerrar la sesión.
                 Close(); // Cierra el formulario actual.

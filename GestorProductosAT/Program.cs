@@ -11,6 +11,20 @@ namespace GestorProductosAT
             // Inicializa la configuración necesaria para utilizar Windows Forms.
             ApplicationConfiguration.Initialize();
 
+            // Comprueba si el archivo de la base de datos existe en la ubicación esperada.
+            string rutaBd = Path.Combine(AppContext.BaseDirectory, "GestorProductosAT.db");
+            if (!File.Exists(rutaBd))
+            {
+                MessageBox.Show("No se encontró la base de datos:\n" + rutaBd +
+                                "\n\nCopia el archivo GestorProductosAT.db junto al programa.");
+                return;
+            }
+
+            // Si se cierra por un error inesperado, muestra un mensaje con la información del error.
+            Application.ThreadException += (s, e) =>
+            MessageBox.Show("Ocurrió un error inesperado:\n" + e.Exception.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             // Intenta actualizar la estructura y los datos de la base de datos.
             try { BaseDatos.Actualizar(); }
 
