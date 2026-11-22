@@ -1,7 +1,7 @@
 ﻿
 using System.Security.Cryptography; // Importa las herramientas necesarias para trabajar con métodos criptográficos.
 
-namespace GestorProductosAT
+namespace GestorProductosAT //La seguridad es muy segura sabia profe
 {
     // Clase encargada de proteger las contraseñas y verificar su autenticidad.
     public static class Seguridad
