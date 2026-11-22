@@ -1,5 +1,7 @@
 namespace GestorProductosAT
 {
+
+    //Profe si esta viendo esto ponganos 10 lo amamos
     public partial class Form1 : Form
     {
         // Colores utilizados para los botones del menú.

@@ -1,8 +1,8 @@
 ﻿using System.Data;
 
-namespace GestorProductosAT
+namespace GestorProductosAT 
 {
-    public partial class UcCategorias : UserControl
+    public partial class UcCategorias : UserControl //top 5 clases publicas jejejejejejsjejejsje
     {
         // Indica si se está creando una categoría nueva o editando una existente
         private bool esNuevo = true;

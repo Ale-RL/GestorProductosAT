@@ -1,4 +1,4 @@
-
+//¿Khomo?
 namespace GestorProductosAT
 {
     // Clase principal encargada de iniciar y controlar la ejecución del programa.
@@ -6,7 +6,7 @@ namespace GestorProductosAT
     {
         // Define el método principal desde donde comienza a ejecutarse la aplicación.
         [STAThread]
-        static void Main()
+        static void Main() 
         {
             // Inicializa la configuración necesaria para utilizar Windows Forms.
             ApplicationConfiguration.Initialize();
