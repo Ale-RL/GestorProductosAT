@@ -1,21 +1,31 @@
-﻿using System.Data;
+﻿
+using System.Data;
 
 namespace GestorProductosAT
 {
     public partial class UcProductos : UserControl
     {
+        // Indica si se está registrando un producto nuevo o editando uno existente.
         private bool esNuevo = true;
-        private const int StockBajo = 10; //por debajo de esto se marcara en rosa
+
+        // Cantidad mínima para considerar que un producto tiene poco stock.
+        private const int StockBajo = 10;
 
         public UcProductos()
         {
             InitializeComponent();
+
+            // Conecta los eventos de los controles con sus respectivos métodos.
             Load += UcProductos_Load;
             txtBuscar.TextChanged += (s, e) => CargarProductos();
+
+            // Al seleccionar una fila, muestra sus datos en el formulario.
             dgvProductos.CellClick += (s, e) =>
             {
                 if (e.RowIndex >= 0) LlenarFormulario(dgvProductos.Rows[e.RowIndex]);
             };
+
+            // Configura las acciones de los botones.
             btnNuevo.Click += (s, e) => LimpiarFormulario();
             btnGuardar.Click += (s, e) => Guardar();
             btnEliminar.Click += (s, e) => Eliminar();
@@ -23,11 +33,12 @@ namespace GestorProductosAT
 
         private void UcProductos_Load(object? sender, EventArgs e)
         {
+            // Evita ejecutar este código mientras se diseña la interfaz.
             if (DesignMode) return;
+
             Estilo.Aplicar(this);
 
-            //dgv es Data Grid View que funciona para conectar la base de dato:
-            //sirve para mostrar o editar datos (osea administra info)
+            // Configura la tabla para mostrar los productos.
             dgvProductos.ReadOnly = true;
             dgvProductos.AllowUserToAddRows = false;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -35,20 +46,25 @@ namespace GestorProductosAT
             dgvProductos.RowHeadersVisible = false;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            // Carga las categorías disponibles en el ComboBox.
             cmbCategoria.DataSource = BaseDatos.Consultar("SELECT id_categoria, nombre FROM Categoria ORDER BY nombre");
             cmbCategoria.DisplayMember = "nombre";
             cmbCategoria.ValueMember = "id_categoria";
 
+            // Carga los proveedores disponibles en el ComboBox.
             cmbProveedor.DataSource = BaseDatos.Consultar("SELECT id_proveedor, nombre FROM Proveedor ORDER BY nombre");
             cmbProveedor.DisplayMember = "nombre";
             cmbProveedor.ValueMember = "id_proveedor";
 
+            // Muestra los productos y deja el formulario listo para un registro nuevo.
             CargarProductos();
             LimpiarFormulario();
         }
 
         private void CargarProductos()
         {
+            // Consulta los productos y obtiene también sus categorías y proveedores.
+            // El filtro permite buscar por nombre o código de barras.
             var tabla = BaseDatos.Consultar(@"SELECT p.codigo_barras, p.nombre, p.precio_compra, p.precio_venta, p.stock,
             c.nombre AS categoria, pr.nombre AS proveedor, p.id_categoria, p.id_proveedor
             FROM Producto p
@@ -57,21 +73,15 @@ namespace GestorProductosAT
             WHERE p.nombre LIKE @f OR p.codigo_barras LIKE @f 
             ORDER BY p.nombre",
             ("@f", "%" + txtBuscar.Text.Trim() + "%"));
-            //Me gustario no tener que explicar esto
-            //En general esto busca productos por nombre o codigos de barra, por ejemplo si escribes 
-            //"leche" puedes encontrar: leche deslactosada, leche entera, leche en polvo, etc.
 
-            //Los "@" indica que estoy usando una cadena de texto literal, deja escribir una cadena de
-            //varias lineas sin tener que concatenar ni usar \n para saltos de linea.
-            //El p, c, pr significan producto, categoria y proveedor, c.nombre significa 
-            //"la columna nombre de la tabla categoria", lo demas son funciones de bases de datos.
-
+            // Coloca los resultados de la consulta en la tabla.
             dgvProductos.DataSource = tabla;
 
-            // Columnas que se usan internamente pero no son visibles
+            // Oculta los identificadores que se utilizan internamente.
             dgvProductos.Columns["id_categoria"]!.Visible = false;
             dgvProductos.Columns["id_proveedor"]!.Visible = false;
 
+            // Cambia los nombres de las columnas para mostrarlos de forma más clara.
             dgvProductos.Columns["codigo_barras"]!.HeaderText = "Código";
             dgvProductos.Columns["nombre"]!.HeaderText = "Nombre";
             dgvProductos.Columns["precio_compra"]!.HeaderText = "P. compra";
@@ -80,7 +90,7 @@ namespace GestorProductosAT
             dgvProductos.Columns["categoria"]!.HeaderText = "Categoría";
             dgvProductos.Columns["proveedor"]!.HeaderText = "Proveedor";
 
-            // Ahora el aviso de que algo se acaba en fila color rosa
+            // Revisa el stock de cada producto y marca en rosa los que tienen 10 unidades o menos.
             foreach (DataGridViewRow fila in dgvProductos.Rows)
             {
                 if (int.TryParse(fila.Cells["stock"].Value?.ToString(), out int s) && s <= StockBajo)
@@ -90,44 +100,61 @@ namespace GestorProductosAT
 
         private void LlenarFormulario(DataGridViewRow fila)
         {
+            // Cambia el formulario al modo de edición.
             esNuevo = false;
-            txtCodigo.ReadOnly = true; // la llave primaria no se edita
+
+            // Bloquea el código porque funciona como identificador del producto.
+            txtCodigo.ReadOnly = true;
+
+            // Coloca los datos del producto seleccionado en los campos correspondientes.
             txtCodigo.Text = fila.Cells["codigo_barras"].Value?.ToString();
             txtNombre.Text = fila.Cells["nombre"].Value?.ToString();
             txtPrecioCompra.Text = fila.Cells["precio_compra"].Value.ToString();
             txtPrecioVenta.Text = fila.Cells["precio_venta"].Value.ToString();
             txtStock.Text = fila.Cells["stock"].Value?.ToString();
+
+            // Selecciona la categoría y el proveedor que tiene asignados.
             cmbCategoria.SelectedValue = Convert.ToInt64(fila.Cells["id_categoria"].Value);
             cmbProveedor.SelectedValue = Convert.ToInt64(fila.Cells["id_proveedor"].Value);
         }
 
         private void LimpiarFormulario()
         {
+            // Regresa el formulario al modo de registro de un producto nuevo.
             esNuevo = true;
+
+            // Habilita nuevamente la edición del código y limpia los campos.
             txtCodigo.ReadOnly = false;
             txtCodigo.Clear();
             txtNombre.Clear();
             txtPrecioCompra.Clear();
             txtPrecioVenta.Clear();
             txtStock.Clear();
+
+            // Selecciona la primera opción de cada lista, si existen elementos.
             if (cmbCategoria.Items.Count > 0) cmbCategoria.SelectedIndex = 0;
             if (cmbProveedor.Items.Count > 0) cmbProveedor.SelectedIndex = 0;
+
+            // Quita la selección de la tabla y coloca el cursor en el código.
             dgvProductos.ClearSelection();
             txtCodigo.Focus();
         }
 
         private void Guardar()
         {
+            // Obtiene los datos escritos y elimina espacios innecesarios.
             string codigo = txtCodigo.Text.Trim();
             string nombre = txtNombre.Text.Trim();
 
+            // Comprueba que los campos obligatorios no estén vacíos.
             if (codigo == "" || nombre == "")
             {
                 MessageBox.Show("El código y el nombre son obligatorios.");
                 return;
             }
 
-            if(!double.TryParse(txtPrecioCompra.Text, out double precioCompra) ||
+            // Comprueba que los precios y el stock sean números válidos y no negativos.
+            if (!double.TryParse(txtPrecioCompra.Text, out double precioCompra) ||
                 !double.TryParse(txtPrecioVenta.Text, out double precioVenta) ||
                 !int.TryParse(txtStock.Text, out int stock) ||
                 precioCompra < 0 || precioVenta < 0 || stock < 0)
@@ -138,6 +165,7 @@ namespace GestorProductosAT
 
             try
             {
+                // Si es un producto nuevo, realiza un INSERT en la base de datos.
                 if (esNuevo)
                 {
                     BaseDatos.Ejecutar(
@@ -147,6 +175,7 @@ namespace GestorProductosAT
                         ("@s", stock), ("@cat", cmbCategoria.SelectedValue!), ("@prov", cmbProveedor.SelectedValue!)
                             );
                 }
+                // Si ya existe, actualiza sus datos mediante UPDATE.
                 else
                 {
                     BaseDatos.Ejecutar(
@@ -159,38 +188,47 @@ namespace GestorProductosAT
                         );
                 }
 
+                // Actualiza la tabla y limpia el formulario después de guardar.
                 CargarProductos();
                 LimpiarFormulario();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo guardar (¿ya existe ese código?): \n" + ex.Message  );
+                // Muestra un mensaje si ocurre algún error al guardar.
+                MessageBox.Show("No se pudo guardar (¿ya existe ese código?): \n" + ex.Message);
             }
         }
 
         private void Eliminar()
         {
+            // Comprueba que se haya seleccionado un producto.
             if (esNuevo)
             {
                 MessageBox.Show("Primero selecciona un producto de la lista.");
                 return;
             }
 
+            // Solicita confirmación antes de eliminar el registro.
             if (MessageBox.Show($"¿Eliminar \"{txtNombre.Text}\"?", "Confirmar",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
             {
+                // Elimina el producto utilizando su código de barras.
                 BaseDatos.Ejecutar("DELETE FROM Producto WHERE codigo_barras = @c", ("@c", txtCodigo.Text));
+
+                // Actualiza la tabla y limpia los campos.
                 CargarProductos();
                 LimpiarFormulario();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo eliminar (probablemente ya tiene ventas registradas):\n" + ex.Message); 
+                // Informa si no fue posible eliminar el producto.
+                MessageBox.Show("No se pudo eliminar (probablemente ya tiene ventas registradas):\n" + ex.Message);
             }
         }
 
+        // Evento de dibujo del panel. Actualmente no contiene instrucciones.
         private void pnlFormulario_Paint(object sender, PaintEventArgs e)
         {
 
