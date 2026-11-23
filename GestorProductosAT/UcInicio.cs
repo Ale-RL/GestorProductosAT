@@ -5,8 +5,6 @@ namespace GestorProductosAT
     public partial class UcInicio : UserControl
     {
         // Define el límite de existencias para considerar que un producto tiene stock bajo
-        // Utiliza el mismo límite que el módulo UcProductos
-        private const int StockBajo = 10;
 
         // Constructor del panel de inicio
         public UcInicio()
@@ -132,7 +130,7 @@ namespace GestorProductosAT
 
             // Cuenta los productos que tienen existencias iguales o menores al límite establecido
             var bajo = BaseDatos.Consultar(
-                "SELECT COUNT(*) FROM Producto WHERE stock <= @limite", ("@limite", StockBajo));
+                "SELECT COUNT(*) FROM Producto WHERE stock <= @limite", ("@limite", Config.StockBajo));
 
             lblStockBajoValor.Text = Convert.ToInt32(bajo.Rows[0][0]).ToString();
 
@@ -199,7 +197,7 @@ namespace GestorProductosAT
                 WHERE p.stock <= @limite
                 ORDER BY p.stock, p.nombre
                 LIMIT 10",
-                ("@limite", StockBajo));
+                ("@limite", Config.StockBajo));
         }
     }
 }

@@ -1,17 +1,14 @@
-//¿Khomo?
 namespace GestorProductosAT
 {
-    // Clase principal encargada de iniciar y controlar la ejecución del programa.
     internal static class Program
     {
-        // Define el método principal desde donde comienza a ejecutarse la aplicación.
         [STAThread]
-        static void Main() 
+        static void Main()
         {
-            // Inicializa la configuración necesaria para utilizar Windows Forms.
+            // Inicializa la configuración básica de la aplicación
             ApplicationConfiguration.Initialize();
 
-            // Comprueba si el archivo de la base de datos existe en la ubicación esperada.
+            // Comprueba que el archivo de la base de datos exista junto al programa
             string rutaBd = Path.Combine(AppContext.BaseDirectory, "GestorProductosAT.db");
             if (!File.Exists(rutaBd))
             {
@@ -20,39 +17,34 @@ namespace GestorProductosAT
                 return;
             }
 
-            // Si se cierra por un error inesperado, muestra un mensaje con la información del error.
+            // Muestra un mensaje cuando ocurre un error inesperado, en lugar de cerrar el programa
             Application.ThreadException += (s, e) =>
-            MessageBox.Show("Ocurrió un error inesperado:\n" + e.Exception.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error inesperado:\n" + e.Exception.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            // Intenta actualizar la estructura y los datos de la base de datos.
+            // Actualiza la base de datos (columnas nuevas y contraseñas protegidas)
             try { BaseDatos.Actualizar(); }
-
-            // Captura cualquier error que ocurra durante la actualización.
             catch (Exception ex)
             {
-                // Muestra un mensaje indicando que ocurrió un problema con la base de datos.
+                // Avisa del problema y cierra el programa si no se pudo actualizar
                 MessageBox.Show("No se pudo actualizar la base de datos:\n" + ex.Message);
-                return; // Finaliza la ejecución del programa.
+                return;
             }
 
-            // Mantiene el ciclo de inicio de sesión y permite volver a entrar después de cerrar sesión.
+            // Repite el inicio de sesión mientras el usuario cierre sesión
             while (true)
             {
-                // Crea y muestra el formulario de inicio de sesión.
+                // Muestra el inicio de sesión; si se cancela, termina el programa
                 using (var login = new FrmLogin())
                 {
-                    // Comprueba si el inicio de sesión no terminó correctamente.
                     if (login.ShowDialog() != DialogResult.OK) return;
                 }
 
-                // Crea una instancia del formulario principal del programa.
+                // Abre la ventana principal
                 var principal = new Form1();
-
-                // Ejecuta el formulario principal y espera hasta que se cierre.
                 Application.Run(principal);
 
-                // Comprueba si el usuario solicitó cerrar sesión.
+                // Si no se pidió cerrar sesión, se cerró el programa
                 if (!principal.CerrarSesionSolicitado) return;
             }
         }
